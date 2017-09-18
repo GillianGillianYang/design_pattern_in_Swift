@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CommandTester/Objects/commands.swift"
+            timestampString = "527336674.009473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "addUndoCommand(method:amount:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CommandTester.Calculator.(addUndoCommand in _E409C1646D899829A6E338B8D0B81BBB)(method: (CommandTester.Calculator) -&gt; (Swift.Int) -&gt; (), amount: Swift.Int) -&gt; ()"
+                  moduleName = "CommandTester"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Gillian/Documents/jjjbergamo/ios_/pro_design_pattern_in_Swift/C20_CommandMode/CommandTester/CommandTester/Objects/commands.swift"
+                  timestampString = "527166212.060812"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "29">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CommandTester.Calculator) -&gt; () in CommandTester.Calculator.(addUndoCommand in _E409C1646D899829A6E338B8D0B81BBB)(method: (CommandTester.Calculator) -&gt; (Swift.Int) -&gt; (), amount: Swift.Int) -&gt; ()"
+                  moduleName = "CommandTester"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Gillian/Documents/jjjbergamo/ios_/pro_design_pattern_in_Swift/C20_CommandMode/CommandTester/CommandTester/Objects/commands.swift"
+                  timestampString = "527166212.175616"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

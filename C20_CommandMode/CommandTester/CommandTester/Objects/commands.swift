@@ -7,7 +7,7 @@
 //
 //using swift4
 
-import Foundation
+import Foundation;
 
 protocol Command {
     func execute();
@@ -16,7 +16,7 @@ protocol Command {
 class commands {
     private (set) var total = 0;
     private var history = [Command]();
-    
+  
     
 }
 
@@ -33,6 +33,7 @@ class GenericCommand<T> : Command{
     }
     
     func execute() {
+      
         instructions(reciever);
     }
 
@@ -49,12 +50,15 @@ class GenericCommand<T> : Command{
 class Calculator{
     private(set) var total = 0;
     private var history = [Command]();
+   // private var queue = dispatch_queue_create("ArrayQ", DISPATCH_QUEUE_SERIAL);
+    private let queue = DispatchQueue(label: "since Swift 3");
+    private var perfaormingUndo = false;
     
-    func add(aamount: Int){
-        addUndoCommand(method: Calculator.substract  , amount : aamount);
-        total += aamount;
+    func add(amount: Int){
+        addUndoCommand(method: Calculator.subtract  , amount : amount);
+        total += amount;
     }
-    func substract(amount: Int){
+    func subtract(amount: Int){
         addUndoCommand(method: Calculator.add , amount : amount);
          total -= amount;
     }
@@ -69,15 +73,29 @@ class Calculator{
     
     private func addUndoCommand(method: @escaping (Calculator) -> (Int) -> () , amount: Int)
     {
-        self.history.append( GenericCommand<Calculator>.createCommand(receivera: self, instuctiona: { calc in
-               method(calc)(amount)
-        })); //(Calculator) -> void
+        
+        if(!perfaormingUndo){
+            queue.async {
+                self.history.append( GenericCommand<Calculator>.createCommand(receivera: self, instuctiona: { calc in method(calc)(amount)}));
+                print(amount);
+                // print( self.history);
+          }
+        }
     }
     
     func undo(){
-        if self.history.count > 0 {
-            self.history.removeLast().execute();
-            self.history.removeLast();// 把上述undo行為多增加的history紀錄刪除
+         queue.async {
+            if self.history.count > 0 {
+                self.perfaormingUndo = true;
+                var test : Command?;
+                test = self.history.removeLast();
+                //self.history.removeLast().execute();
+                test?.execute();
+                print("execute::\(self.total)", ": \(self.history.count)"); 
+                self.perfaormingUndo = false;
+                //self.history.removeLast();
+                // 把上述undo行為多增加的history紀錄刪除
+            }
         }
     }
     
@@ -90,8 +108,8 @@ class swiftPractice{
         let Nums = Array(0...10);
         var totals = Nums.reduce(0, {(sum, num)-> Int in return sum + num });
         var totals2 =  Nums.reduce(0){ $0 + $1 }
-        
-        //printl(totals);
+        print(totals2);
+        //println(totals);
     }
     
 }

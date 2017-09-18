@@ -6,7 +6,8 @@
 //  Copyright © 2017年 MrRabitRabit_studio. All rights reserved.
 //
 
-import UIKit
+import UIKit;
+//import Objects;
 
 class ViewController: UIViewController {
 
@@ -21,7 +22,23 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showTest(_ sender: UIButton) {
+        let s : swiftPractice?;
+        s = swiftPractice();
+       // s?.testReduce();
+       
+        let calc = Calculator();
+        calc.add(amount: 12);
+        calc.multiply(amount: 5);
+        calc.subtract(amount: 4);
         
+        print("Total: \(calc.total) \n");
+        
+        for _ in 0..<3
+        {
+            calc.undo();
+            print("Total_: \(calc.total) \n");
+        }
+        print("Total__: \(calc.total) \n");
         
     }
     
