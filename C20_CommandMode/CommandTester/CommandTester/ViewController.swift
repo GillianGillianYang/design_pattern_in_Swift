@@ -33,12 +33,18 @@ class ViewController: UIViewController {
         
         print("Total: \(calc.total) \n");
         
-        for _ in 0..<3
+      /*  for _ in 0..<3
         {
             calc.undo();
             print("Total_: \(calc.total) \n");
         }
         print("Total__: \(calc.total) \n");
+         */
+        
+        let snapshot = calc.getHistorySnaphot();
+        print("pre-snapshot: \(calc.total)");
+        snapshot?.execute();
+        print("post-snapshot: \(calc.total)");
         
     }
     

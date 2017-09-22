@@ -20,6 +20,21 @@ class commands {
     
 }
 
+class CommandWrapper :Command{
+   
+    private let commands :[Command];
+    
+    init(commands: [Command]){
+        self.commands = commands;
+    }
+    func execute() {
+        for command in commands{
+            command.execute();
+        }
+    }
+    
+}
+
 
 class GenericCommand<T> : Command{
     
@@ -52,7 +67,7 @@ class Calculator{
     private var history = [Command]();
    // private var queue = dispatch_queue_create("ArrayQ", DISPATCH_QUEUE_SERIAL);
     private let queue = DispatchQueue(label: "since Swift 3");
-    private var perfaormingUndo = false;
+     private var perfaormingUndo = false;
     
     func add(amount: Int){
         addUndoCommand(method: Calculator.subtract  , amount : amount);
@@ -75,28 +90,36 @@ class Calculator{
     {
         
         if(!perfaormingUndo){
-            queue.async {
+         //   queue.async {
                 self.history.append( GenericCommand<Calculator>.createCommand(receivera: self, instuctiona: { calc in method(calc)(amount)}));
                 print(amount);
                 // print( self.history);
-          }
+        //  }
         }
     }
     
     func undo(){
-         queue.async {
+      //   queue.async {
             if self.history.count > 0 {
                 self.perfaormingUndo = true;
                 var test : Command?;
                 test = self.history.removeLast();
                 //self.history.removeLast().execute();
                 test?.execute();
-                print("execute::\(self.total)", ": \(self.history.count)"); 
+                print("execute::\(self.total)", ": \(self.history.count)");
                 self.perfaormingUndo = false;
                 //self.history.removeLast();
                 // 把上述undo行為多增加的history紀錄刪除
             }
-        }
+      //  }
+    }
+    
+    func getHistorySnaphot() -> Command?{
+        var command: Command?;
+       // queue.async {
+            command = CommandWrapper(commands: self.history.reversed());
+       // }
+        return command;
     }
     
 }
